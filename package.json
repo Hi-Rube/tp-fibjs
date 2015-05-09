@@ -1,0 +1,16 @@
+{
+  "name": "tp-fibjs",
+  "description": "fibjs templates",
+  "version": "1.0.0",
+  "author": "Rube <353371737@qq.com>",
+  "keywords": ["template", "engine", "fibjs"],
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "main": "./lib/tp.js",
+  "repository": "",
+  "scripts": {
+    "test": "mocha --require should --reporter spec"
+  }
+}
