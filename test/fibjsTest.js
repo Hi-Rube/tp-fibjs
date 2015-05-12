@@ -22,12 +22,22 @@ describe('tp engine run', function () {
     var params = {
       rube: 'rubepass'
     };
+    assert.equal(module.transform(tp, params), html);
+  });
+
+  it('TEMP_S and TEMP_E can be changed', function(){
+    var module = require('../');
+    var tp = fs.readFile('./tp4.tp');
+    var html = fs.readFile('./tp4.html');
+    var params = {
+      rube: 'rubepass'
+    };
     var options = {
       TEMP_S:'{{',
       TEMP_E:'}}'
     };
     assert.equal(module.transform(tp, params, options), html);
-  })
+  });
 });
 
 test.run();
