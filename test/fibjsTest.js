@@ -15,7 +15,7 @@ describe('fibjs run', function () {
 });
 
 describe('tp engine run', function () {
-  it('variable can be transform', function () {
+  it('variable can be transformed', function () {
     var module = require('../');
     var tp = fs.readFile('./tp1.tp');
     var html = fs.readFile('./tp1.html');
@@ -25,7 +25,7 @@ describe('tp engine run', function () {
     assert.equal(module.transform(tp, params), html);
   });
 
-  it('TEMP_S and TEMP_E can be changed', function(){
+  it('TEMP_S and TEMP_E can be changed', function () {
     var module = require('../');
     var tp = fs.readFile('./tp4.tp');
     var html = fs.readFile('./tp4.html');
@@ -33,10 +33,24 @@ describe('tp engine run', function () {
       rube: 'rubepass'
     };
     var options = {
-      TEMP_S:'{{',
-      TEMP_E:'}}'
+      TEMP_S: '{{',
+      TEMP_E: '}}'
     };
     assert.equal(module.transform(tp, params, options), html);
+  });
+
+  it('statement can be transformed and no blank lines', function () {
+    var module = require('../');
+    var tp = fs.readFile('./tp2.tp');
+    var html = fs.readFile('./tp2.html');
+    assert.equal(module.transform(tp), html);
+  });
+
+  it('Quotes can be used normally', function () {
+    var module = require('../');
+    var tp = fs.readFile('./tp3.tp');
+    var html = fs.readFile('./tp3.html');
+    assert.equal(module.transform(tp), html);
   });
 });
 
