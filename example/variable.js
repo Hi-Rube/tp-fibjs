@@ -1,6 +1,6 @@
 var fs = require('fs');
 var tpMoudle = require('../lib/tp');
-var tp = fs.readFile('../test/tp1.tp');
+var tp = fs.readFile('../test/variable.tp');
 var params = {
   rube: 'rubepass'
 };

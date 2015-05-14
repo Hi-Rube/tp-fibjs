@@ -1,5 +1,7 @@
 var fs = require('fs');
 var test = require('test');
+var module = require('../');
+
 test.setup();
 
 describe('fibjs run', function () {
@@ -9,16 +11,14 @@ describe('fibjs run', function () {
   });
 
   it('fibjs module can be run', function () {
-    var module = require('../');
-    assert.equal(module.intro(), 'fibjs templates engine');
+    assert.equal(module.intro(), 'Javascript templates engine');
   });
 });
 
 describe('tp engine run', function () {
   it('variable can be transformed', function () {
-    var module = require('../');
-    var tp = fs.readFile('./tp1.tp');
-    var html = fs.readFile('./tp1.html');
+    var tp = fs.readFile('./templates/variable.tp');
+    var html = fs.readFile('./templates/variable.html');
     var params = {
       rube: 'rubepass'
     };
@@ -26,9 +26,8 @@ describe('tp engine run', function () {
   });
 
   it('TEMP_S and TEMP_E can be changed', function () {
-    var module = require('../');
-    var tp = fs.readFile('./tp4.tp');
-    var html = fs.readFile('./tp4.html');
+    var tp = fs.readFile('./templates/TEMP_S-TEMP_E.tp');
+    var html = fs.readFile('./templates/TEMP_S-TEMP_E.html');
     var params = {
       rube: 'rubepass'
     };
@@ -39,19 +38,25 @@ describe('tp engine run', function () {
     assert.equal(module.transform(tp, params, options), html);
   });
 
-  it('statement can be transformed and no blank lines', function () {
-    var module = require('../');
-    var tp = fs.readFile('./tp2.tp');
-    var html = fs.readFile('./tp2.html');
+  it('Quotes can be used normally', function () {
+    var tp = fs.readFile('./templates/quotes.tp');
+    var html = fs.readFile('./templates/quotes.html');
+    assert.equal(module.transform(tp), html);
+  });
+});
+
+describe('statement transform', function () {
+  it('simple statement can be transformed and no blank lines', function () {
+    var tp = fs.readFile('./templates/simple-statement.tp');
+    var html = fs.readFile('./templates/simple-statement.html');
     assert.equal(module.transform(tp), html);
   });
 
-  it('Quotes can be used normally', function () {
-    var module = require('../');
-    var tp = fs.readFile('./tp3.tp');
-    var html = fs.readFile('./tp3.html');
+  it('complex statement can be transform and no blank line', function(){
+    var tp = fs.readFile('./templates/complex-statement.tp');
+    var html = fs.readFile('./templates/complex-statement.html');
     assert.equal(module.transform(tp), html);
-  });
+  })
 });
 
 test.run();
