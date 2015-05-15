@@ -87,4 +87,34 @@ describe('Different types of variables', function () {
   });
 });
 
+describe('Performance Testing', function () {
+  it('CACHE Test', function () {
+    var tp = fs.readFile('./templates/CACHE-Test.tp');
+    var html = fs.readFile('./templates/CACHE-Test.html');
+    var params = {
+      a: 'ruberuberuberuberuberuberuberuberuberube',
+      a1: 'ruberuberuberuberuberuberuberuberuberube',
+      a2: 'ruberuberuberuberuberuberuberuberuberube',
+      a3: 'ruberuberuberuberuberuberuberuberuberube',
+      a4: 'ruberuberuberuberuberuberuberuberuberube',
+      a5: 'ruberuberuberuberuberuberuberuberuberube',
+      a6: 'ruberuberuberuberuberuberuberuberuberube',
+      a7: 'ruberuberuberuberuberuberuberuberuberube',
+      a8: 'ruberuberuberuberuberuberuberuberuberube',
+      a9: 'ruberuberuberuberuberuberuberuberuberube'
+    };
+    var timeS1 = new Date().getTime();
+    module.transform(tp, params, {tpName:'statement'});
+    var timeE1 = new Date().getTime();
+    var time1 = timeE1 - timeS1;
+
+    var timeS2 = new Date().getTime();
+    module.transform(tp, params, {tpName:'statement'});
+    var timeE2 = new Date().getTime();
+    var time2 = timeS2 - timeE2;
+    assert.equal(module.transform(tp, params), html);
+    assert.equal(time1 - time2 > 0, true);
+  });
+});
+
 test.run();
