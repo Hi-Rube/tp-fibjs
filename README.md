@@ -1,6 +1,9 @@
 ##一个Javascirpt模板渲染引擎
 
+###fibjs Usage
+
 step:
+
 [ ] 完善README
 
 [ ] 错误捕获
@@ -17,6 +20,7 @@ step:
 
 
 bug:
+
 [ ] 删除空白
 
 [*] 支持多种变量类型
